@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - Neon Vape Store</title>
+    <style>
+        :root {
+            --primary-neon: #bf00ff;
+            --bg-dark: #0a0a0a;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-top: 100px;
+        }
+
+        .header {
+            background: rgba(10, 10, 10, 0.9);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-neon);
+            box-shadow: 0 0 20px rgba(191, 0, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header h1 {
+            color: var(--primary-neon);
+            text-shadow: 0 0 10px rgba(191, 0, 255, 0.5);
+            margin: 0;
+        }
+
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 10px 0;
+        }
+
+        nav a {
+            color: #fff;
+            background: rgba(191, 0, 255, 0.1);
+            border: 1px solid rgba(191, 0, 255, 0.3);
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background: rgba(191, 0, 255, 0.2);
+            border-color: var(--primary-neon);
+            box-shadow: 0 0 15px var(--primary-neon);
+            color: var(--primary-neon);
+        }
+
+        .order-form {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid var(--primary-neon);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(191, 0, 255, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-neon);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--primary-neon);
+            border-radius: 5px;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 10px var(--primary-neon);
+        }
+
+        button {
+            background: var(--primary-neon);
+            color: #fff;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            box-shadow: 0 0 15px var(--primary-neon);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .order-form {
+                margin: 20px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Neon Vape Store</h1>
+        <nav>
+            <a href="index.html">Home</a> <!-- Updated link -->
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="order.html">Order</a>
+        </nav>
+    </div>
+
+    <div class="order-form">
+        <h2>Place Your Order</h2>
+        <form id="vapeOrderForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="product">Select Product</label>
+                <select id="product" name="product" required>
+                    <option value="">Choose a product</option>
+                    <option value="starter-kit">Starter Kit</option>
+                    <option value="advanced-kit">Advanced Kit</option>
+                    <option value="premium-juice">Premium E-Juice</option>
+                    <option value="accessories">Accessories</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" name="quantity" min="1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Additional Notes</label>
+                <textarea id="message" name="message" rows="4"></textarea>
+            </div>
+
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+</body>
+</html>

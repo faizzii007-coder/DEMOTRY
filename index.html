@@ -1,227 +1,423 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CityCare Hospital</title>
-  <style>
-    :root{
-      --primary:#0074D9;
-      --accent:#2ECC40;
-      --muted:#6b7280;
-      --bg:#f7fafc;
-      --card:#ffffff;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:#111}
-    header{background:linear-gradient(90deg, rgba(0,116,217,.06), rgba(46,204,64,.03));padding:18px 24px;display:flex;align-items:center;justify-content:space-between}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:44px;height:44px;border-radius:8px;background:var(--primary);display:grid;place-items:center;color:#fff;font-weight:700}
-    nav a{margin-left:12px;color:var(--primary);text-decoration:none;font-weight:600}
-    .container{max-width:1100px;margin:32px auto;padding:0 20px}
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-bottom:40px}
-    .hero-card{background:var(--card);padding:28px;border-radius:12px;box-shadow:0 6px 18px rgba(16,24,40,0.06)}
-    .eyebrow{display:inline-block;background:rgba(0,116,217,.08);color:var(--primary);padding:6px 10px;border-radius:999px;font-weight:700;margin-bottom:14px}
-    h1{margin:6px 0 12px;font-size:28px;line-height:1.1}
-    p.lead{color:var(--muted);margin:0 0 18px}
-    .cta{display:flex;gap:10px}
-    .btn{padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
-    .btn-primary{background:var(--primary);color:#fff}
-    .btn-outline{background:#fff;border:1px solid rgba(0,0,0,.08);color:var(--primary)}
-    .info-list{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-    .info{background:rgba(0,0,0,.03);padding:12px;border-radius:8px;text-align:center}
-    .hero-side{display:flex;flex-direction:column;gap:12px}
-    .card-sm{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(16,24,40,0.04)}
-    /* Sections */
-    section{margin-bottom:28px}
-    .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-    .why-us .item{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 6px 18px rgba(16,24,40,0.04)}
-    footer{padding:24px;background:#0f1724;color:#fff;margin-top:20px}
-    .footer-grid{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-    /* Contact form */
-    form input, form textarea{width:100%;padding:10px;border:1px solid #e6eef6;border-radius:8px;margin-bottom:10px}
-    form button{width:100%;background:var(--accent);color:#fff;padding:10px;border-radius:8px;border:none;font-weight:700;cursor:pointer}
-    @media (max-width:880px){
-      .hero{grid-template-columns:1fr; padding-bottom:0}
-      .hero-side{order:-1}
-      header{padding:14px}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Vape Store</title>
+    
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            background-color: rgba(26, 26, 26, 0);
+            padding: 25px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .header.scrolled {
+            background-color: rgba(26, 26, 26, 0.95);
+            padding: 10px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 20px rgba(191, 0, 255, 0.4);
+        }
+
+        .header h1 {
+            transition: all 0.4s ease;
+            margin: 0 auto;
+            padding: 10px 0;
+            width: 100%;
+            text-align: center;
+            font-size: 2.5rem;
+        }
+
+        .header.scrolled h1 {
+            font-size: 1.8rem;
+        }
+
+        nav {
+            transition: all 0.4s ease;
+            margin: 15px 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header.scrolled nav {
+            margin: 8px 0;
+        }
+
+        nav a {
+            color: rgba(191, 0, 255, 0.8);
+            text-decoration: none;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            padding: 6px 15px;
+            border-radius: 25px;
+            background: rgba(26, 26, 26, 0.5);
+        }
+
+        nav a:hover {
+            color: #bf00ff;
+            text-shadow: 0 0 10px #bf00ff;
+            background: rgba(26, 26, 26, 0.8);
+        }
+
+        .content {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        h1 {
+            color: #bf00ff;
+            text-shadow: 0 0 10px #bf00ff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .main-content {
+            width: 100%;
+            padding: 20px;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 30px;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            border: 1px solid #bf00ff;
+            box-shadow: 0 0 15px rgba(191, 0, 255, 0.2);
+        }
+
+        .section h2 {
+            color: #bf00ff;
+            margin-bottom: 20px;
+        }
+        
+        /* Carousel Section Specific Styles */
+        .carousel-section {
+            background-color: #0a0a0a;
+            padding: 50px 0;
+            margin: 40px 0;
+            border-top: 2px solid #bf00ff;
+            border-bottom: 2px solid #bf00ff;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .carousel-container {
+            max-width: 90%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .owl-carousel .item {
+            height: 250px;
+            width: 250px;
+            margin: 20px 40px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            border: 4px solid #bf00ff;
+            box-shadow: 0 0 25px rgba(191, 0, 255, 0.5);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .owl-carousel .item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(191, 0, 255, 0.6);
+        }
+
+        .owl-stage {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .owl-item {
+            display: flex;
+            justify-content: center;
+        }
+
+        .owl-nav button {
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(26, 26, 26, 0.9) !important;
+            border: 2px solid #bf00ff !important;
+            border-radius: 50% !important;
+            margin: 0 20px !important;
+            z-index: 2;
+        }
+
+        .owl-nav button.owl-prev {
+            left: -70px;
+        }
+
+        .owl-nav button.owl-next {
+            right: -70px;
+        }
+
+        .owl-dots {
+            margin-top: 20px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .main-content {
+                padding: 10px;
+            }
+            
+            .section {
+                margin: 20px 0;
+                padding: 15px;
+            }
+
+            .header {
+                padding: 10px;
+            }
+
+            .header.scrolled {
+                padding: 3px;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 16px;
+                padding: 8px 15px;
+            }
+
+            body {
+                padding-top: 100px;
+            }
+
+            .owl-carousel .item {
+                height: 150px;
+                width: 150px;
+            }
+
+            .carousel-container {
+                padding: 0 10px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+                padding: 5px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 10px;
+            }
+            
+            .main-content {
+                padding: 10px;
+            }
+            
+            .section {
+                margin: 15px 0;
+                padding: 10px;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+            
+            .owl-carousel .item {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        /* Fluid typography */
+        html {
+            font-size: calc(14px + 0.390625vw);
+        }
+
+        /* Improved image responsiveness */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Owl Carousel responsive updates */
+        .owl-carousel {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .carousel-section {
+            margin-top: 60px;
+            padding: 60px 0;
+            background-color: #0a0a0a;
+            border-top: 2px solid #bf00ff;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #bf00ff;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-shadow: 0 0 15px #bf00ff;
+        }
+
+        /* Add padding to body to account for fixed header */
+        body {
+            padding-top: 120px;
+        }
+
+        .hero-section {
+            padding: 120px 0 60px 0;
+            background-color: rgba(26, 26, 26, 0.9);
+            border-bottom: 2px solid #bf00ff;
+        }
+
+        .carousel-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .owl-carousel .item {
+            height: 250px;
+            width: 250px;
+            margin: 10px;
+            border-radius: 50%;
+            border: 3px solid #bf00ff;
+            box-shadow: 0 0 15px rgba(191, 0, 255, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 100px 0 40px 0;
+            }
+
+            .owl-carousel .item {
+                height: 200px;
+                width: 200px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="brand">
-      <div class="logo">CC</div>
-      <div>
-        <div style="font-weight:800">CityCare Hospital</div>
-        <div style="font-size:12px;color:var(--muted)">Compassion • Expertise • Care</div>
-      </div>
+    <!-- Fixed Navbar -->
+    <div class="header">
+        <h1>Neon Vape Store</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="order.html">Order</a>
+        </nav>
     </div>
-    <nav>
-      <a href="about.html">About</a>
-      <a href="#services">Services</a>
-      <a href="#why">Why Us</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
-  <main class="container">
-    <section class="hero">
-      <div class="hero-card">
-        <span class="eyebrow">24/7 Emergency</span>
-        <h1>Comprehensive care when you need it most</h1>
-        <p class="lead">CityCare Hospital provides advanced medical services, experienced specialists, and compassionate nursing — all under one roof.</p>
-        <div class="cta">
-          <a class="btn btn-primary" href="#contact">Book an Appointment</a>
-          <a class="btn btn-outline" href="#services">Our Services</a>
+    <!-- Hero Section with Carousel -->
+    <div class="hero-section">
+        <div class="carousel-container">
+            <div class="owl-carousel owl-theme">
+                <div class="item" style="background-image: url('https://via.placeholder.com/600x600/1a1a1a/bf00ff?text=Vape+1')"></div>
+                <div class="item" style="background-image: url('https://via.placeholder.com/600x600/1a1a1a/bf00ff?text=Vape+2')"></div>
+                <div class="item" style="background-image: url('https://via.placeholder.com/600x600/1a1a1a/bf00ff?text=Vape+3')"></div>
+                <div class="item" style="background-image: url('https://via.placeholder.com/600x600/1a1a1a/bf00ff?text=Vape+4')"></div>
+            </div>
         </div>
-
-        <div class="info-list" aria-hidden="true">
-          <div class="info">
-            <div style="font-weight:800">150+</div>
-            <div style="font-size:12px;color:var(--muted)">Doctors & Staff</div>
-          </div>
-          <div class="info">
-            <div style="font-weight:800">30+</div>
-            <div style="font-size:12px;color:var(--muted)">Specialties</div>
-          </div>
-          <div class="info">
-            <div style="font-weight:800">24/7</div>
-            <div style="font-size:12px;color:var(--muted)">Emergency</div>
-          </div>
-        </div>
-      </div>
-
-      <aside class="hero-side">
-        <div class="card-sm">
-          <strong>Visit Hours</strong>
-          <div style="color:var(--muted);font-size:14px">Mon - Fri: 8:00 AM - 8:00 PM<br>Sat: 9:00 AM - 5:00 PM</div>
-        </div>
-        <div class="card-sm">
-          <strong>Emergency</strong>
-          <div style="color:var(--muted);font-size:14px">Call <a href="tel:+1234567890">+1 234 567 890</a> — available 24/7</div>
-        </div>
-        <div class="card-sm">
-          <strong>Find a Doctor</strong>
-          <div style="color:var(--muted);font-size:14px">Search specialists by department and book online.</div>
-        </div>
-      </aside>
-    </section>
-
-    <section id="about">
-      <div class="hero-card">
-        <h2>About CityCare</h2>
-        <p style="color:var(--muted)">CityCare Hospital is a full-service medical center offering a wide range of inpatient and outpatient services. We combine modern technology with patient-centered care to deliver the best possible outcomes.</p>
-        <div style="margin-top:12px" class="grid-3">
-          <div style="padding:10px;border-radius:8px;background:rgba(0,0,0,.02)">
-            <strong>Mission</strong>
-            <div style="color:var(--muted);font-size:14px">Provide safe, high-quality healthcare with compassion and respect.</div>
-          </div>
-          <div style="padding:10px;border-radius:8px;background:rgba(0,0,0,.02)">
-            <strong>Vision</strong>
-            <div style="color:var(--muted);font-size:14px">Be a trusted partner in community health and wellness.</div>
-          </div>
-          <div style="padding:10px;border-radius:8px;background:rgba(0,0,0,.02)">
-            <strong>Values</strong>
-            <div style="color:var(--muted);font-size:14px">Safety, Integrity, Excellence.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="services">
-      <h2 style="margin-bottom:12px">Our Services</h2>
-      <div class="grid-3">
-        <div class="hero-card">
-          <strong>Emergency Care</strong>
-          <p style="color:var(--muted)">Rapid response team and fully equipped ER.</p>
-        </div>
-        <div class="hero-card">
-          <strong>Surgical Services</strong>
-          <p style="color:var(--muted)">Advanced operating rooms and specialized surgeons.</p>
-        </div>
-        <div class="hero-card">
-          <strong>Maternity & Pediatrics</strong>
-          <p style="color:var(--muted)">Compassionate care for mothers and children.</p>
-        </div>
-        <div class="hero-card">
-          <strong>Cardiology</strong>
-          <p style="color:var(--muted)">Comprehensive heart care and diagnostics.</p>
-        </div>
-        <div class="hero-card">
-          <strong>Radiology & Imaging</strong>
-          <p style="color:var(--muted)">State-of-the-art imaging services.</p>
-        </div>
-        <div class="hero-card">
-          <strong>Outpatient Clinics</strong>
-          <p style="color:var(--muted)">Routine and specialty consultations.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="why" class="why-us">
-      <h2 style="margin-bottom:12px">Why Choose Us</h2>
-      <div class="grid-3">
-        <div class="item">
-          <strong>Experienced Team</strong>
-          <div style="color:var(--muted)">Board-certified specialists and skilled nursing staff.</div>
-        </div>
-        <div class="item">
-          <strong>Patient-first Approach</strong>
-          <div style="color:var(--muted)">Individualized care plans and patient education.</div>
-        </div>
-        <div class="item">
-          <strong>Advanced Technology</strong>
-          <div style="color:var(--muted)">Modern diagnostics and minimally invasive treatments.</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>Contact & Appointments</h2>
-      <div style="display:grid;grid-template-columns:1fr 320px;gap:18px">
-        <div class="hero-card">
-          <form onsubmit="event.preventDefault(); alert('Request submitted (demo)');">
-            <input type="text" name="name" placeholder="Full name" required>
-            <input type="tel" name="phone" placeholder="Phone" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <textarea name="message" rows="4" placeholder="Reason for visit / message"></textarea>
-            <button type="submit">Request Appointment</button>
-          </form>
-        </div>
-        <aside class="card-sm">
-          <strong>Contact Info</strong>
-          <div style="color:var(--muted);font-size:14px;margin-top:8px">
-            Address: 123 Main St, Cityville<br>
-            Phone: <a href="tel:+1234567890">+1 234 567 890</a><br>
-            Email: <a href="mailto:info@citycare.example">info@citycare.example</a>
-          </div>
-        </aside>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-grid">
-      <div>
-        <div style="font-weight:800">CityCare Hospital</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.8)">© <span id="year"></span> All rights reserved.</div>
-      </div>
-      <div style="color:rgba(255,255,255,.85)">Privacy • Terms • Help</div>
     </div>
-  </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    // smooth scrolling for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const t=document.querySelector(a.getAttribute('href'));
-        if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
-      });
-    });
-  </script>
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <div class="section" id="welcome">
+                <h2>Welcome to Neon Vape</h2>
+                <p>Discover the ultimate vaping experience with our premium collection of devices, e-liquids, and accessories.</p>
+            </div>
+
+            <div class="section" id="why-choose">
+                <h2>Why Choose Us</h2>
+                <p>- Premium Quality Products<br>
+                   - Expert Customer Support<br>
+                   - Fast & Secure Shipping<br>
+                   - Competitive Prices<br>
+                   - Satisfaction Guaranteed</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Initialize carousel
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                dots: true,
+                autoplay: true,
+                autoplayTimeout: 3000,
+                autoplayHoverPause: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    }
+                }
+            });
+
+            // Header scroll effect
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('.header').addClass('scrolled');
+                } else {
+                    $('.header').removeClass('scrolled');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
