@@ -3,19 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>Neon Vape Store</title>
     
     <!-- Owl Carousel CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     
     <style>
         body {
-            background-color: #0a0a0a;
+            background-image: url('images/img6.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #0a0a0a; /* fallback color */
             color: #fff;
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
+            position: relative;
+        }
+
+        /* Add an overlay to ensure text readability */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.85); /* Dark overlay for better text visibility */
+            z-index: -1;
         }
         
         .header {
@@ -138,21 +162,27 @@
         }
 
         .owl-carousel .item {
-            height: 250px;
-            width: 250px;
-            margin: 20px 40px;
-            background-size: cover;
-            background-position: center;
+            aspect-ratio: 1;
+            width: 100%;
+            max-width: 250px;
+            margin: 10px auto;
+            position: relative;
             border-radius: 50%;
-            border: 4px solid #bf00ff;
-            box-shadow: 0 0 25px rgba(191, 0, 255, 0.5);
-            transition: all 0.3s ease;
-            display: inline-block;
+            overflow: hidden;
         }
 
-        .owl-carousel .item:hover {
+        .owl-carousel .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #bf00ff;
+            box-shadow: 0 0 15px rgba(191, 0, 255, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .owl-carousel .item:hover img {
             transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(191, 0, 255, 0.6);
         }
 
         .owl-stage {
@@ -228,8 +258,7 @@
             }
 
             .owl-carousel .item {
-                height: 150px;
-                width: 150px;
+                max-width: 200px;
             }
 
             .carousel-container {
@@ -261,8 +290,7 @@
             }
             
             .owl-carousel .item {
-                width: 150px;
-                height: 150px;
+                max-width: 150px;
             }
         }
 
@@ -295,8 +323,41 @@
             text-align: center;
             color: #bf00ff;
             font-size: 2.5rem;
-            margin-bottom: 40px;
+            margin: 40px 0;
             text-shadow: 0 0 15px #bf00ff;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: #bf00ff;
+            box-shadow: 0 0 10px #bf00ff;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 15px rgba(191, 0, 255, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(191, 0, 255, 0.6); }
+            100% { box-shadow: 0 0 15px rgba(191, 0, 255, 0.4); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         /* Add padding to body to account for fixed header */
@@ -337,6 +398,287 @@
                 width: 200px;
             }
         }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-image {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* 1:1 Aspect Ratio */
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .product-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .learn-more {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #bf00ff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .learn-more:hover {
+            background: #a600e6;
+        }
+
+        /* New card section styles */
+        .card-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 40px 0;
+        }
+
+        .card {
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(191, 0, 255, 0.2);
+        }
+
+        .image_container {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image_container:hover .image {
+            transform: scale(1.05);
+        }
+
+        .title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #bf00ff;
+        }
+
+        .size {
+            margin-bottom: 15px;
+        }
+
+        .list-size {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .item-list {
+            display: inline-block;
+        }
+
+        .item-list-button {
+            background: transparent;
+            border: 2px solid #bf00ff;
+            color: #bf00ff;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .item-list-button:hover {
+            background: #bf00ff;
+            color: #0a0a0a;
+        }
+
+        .action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            color: #bf00ff;
+        }
+
+        .cart-button {
+            display: flex;
+            align-items: center;
+            background: #bf00ff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .cart-button:hover {
+            background: #a600e6;
+        }
+
+        .cart-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            fill: currentColor;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: rgba(26, 26, 26, 0.95);
+            border-top: 2px solid #bf00ff;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            box-shadow: 0 -5px 15px rgba(191, 0, 255, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        .footer-section {
+            text-align: center;
+        }
+
+        .footer-section h3 {
+            color: #bf00ff;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #bf00ff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #bf00ff;
+            text-shadow: 0 0 5px #bf00ff;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            color: #fff;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #bf00ff;
+            transform: translateY(-3px);
+            text-shadow: 0 0 10px #bf00ff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(191, 0, 255, 0.3);
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-section {
+                padding: 0 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -355,10 +697,18 @@
     <div class="hero-section">
         <div class="carousel-container">
             <div class="owl-carousel owl-theme">
-                <div class="item" style="background-image: url('https://via.placeholder.com/600x600/1a1a1a/bf00ff?text=Vape+1')"></div>
-                <div class="item" style="background-image: url('https://via.placeholder.com/600x600/1a1a1a/bf00ff?text=Vape+2')"></div>
-                <div class="item" style="background-image: url('https://via.placeholder.com/600x600/1a1a1a/bf00ff?text=Vape+3')"></div>
-                <div class="item" style="background-image: url('https://via.placeholder.com/600x600/1a1a1a/bf00ff?text=Vape+4')"></div>
+                <div class="item">
+                    <img src="images/img1.jpg" alt="Vape Product 1" />
+                </div>
+                <div class="item">
+                    <img src="images/img2.jpg" alt="Vape Product 2" />
+                </div>
+                <div class="item">
+                    <img src="images/img3.jpg" alt="Vape Product 3" />
+                </div>
+                <div class="item">
+                    <img src="images/img4.jpg" alt="Vape Product 4" />
+                </div>
             </div>
         </div>
     </div>
@@ -366,12 +716,12 @@
     <!-- Main Content -->
     <div class="container">
         <div class="main-content">
-            <div class="section" id="welcome">
+            <div class="section" id="welcome" data-aos="fade-up">
                 <h2>Welcome to Neon Vape</h2>
                 <p>Discover the ultimate vaping experience with our premium collection of devices, e-liquids, and accessories.</p>
             </div>
 
-            <div class="section" id="why-choose">
+            <div class="section" id="why-choose" data-aos="fade-up" data-aos-delay="100">
                 <h2>Why Choose Us</h2>
                 <p>- Premium Quality Products<br>
                    - Expert Customer Support<br>
@@ -379,13 +729,124 @@
                    - Competitive Prices<br>
                    - Satisfaction Guaranteed</p>
             </div>
+
+            <h2 class="section-title" data-aos="fade-down">Featured Collections</h2>
+            <div class="section products-grid">
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="product-image">
+                        <img src="images/img1.jpg" alt="GTURBO Vape Device">
+                        <div class="product-overlay">
+                            <h3>GTURBO</h3>
+                            <a href="#" class="learn-more">Learn more ></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/img2.jpg" alt="OX Vape Device">
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/img3.jpg" alt="SPOD Vape Device">
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/img4.jpg" alt="DeePod Vape Device">
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/img5.jpg" alt="Premium Vape Device">
+                        <div class="product-overlay">
+                            <h3>PREMIUM</h3>
+                            <a href="#" class="learn-more">Learn more ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New card section -->
+            <div class="section card-section" data-aos="fade-up" data-aos-duration="1200">
+                <div class="card">
+                    <div class="image_container">
+                        <img src="images/img5.jpg" alt="New Vape Product" class="image">
+                    </div>
+                    <div class="title">
+                        <span>New brand name</span>
+                    </div>
+                    <div class="size">
+                        <span>Size</span>
+                        <ul class="list-size">
+                            <li class="item-list"><button class="item-list-button">37</button></li>
+                            <li class="item-list"><button class="item-list-button">38</button></li>
+                            <li class="item-list"><button class="item-list-button">39</button></li>
+                            <li class="item-list"><button class="item-list-button">40</button></li>
+                            <li class="item-list"><button class="item-list-button">41</button></li>
+                        </ul>
+                    </div>
+                    <div class="action">
+                        <div class="price">
+                            <span>$299</span>
+                        </div>
+                        <button class="cart-button">
+                            <svg class="cart-icon" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" stroke-linejoin="round" stroke-linecap="round"></path>
+                            </svg>
+                            <span>Add to cart</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer" data-aos="fade-up" data-aos-offset="200">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                <p><i class="fas fa-envelope"></i> info@neonvape.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Vape Street, Cloud City</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Neon Vape Store. All rights reserved.</p>
+        </div>
+    </footer>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100,
+            easing: 'ease-in-out'
+        });
+
         $(document).ready(function() {
             // Initialize carousel
             $('.owl-carousel').owlCarousel({
